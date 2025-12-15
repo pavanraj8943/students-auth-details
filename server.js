@@ -1,13 +1,11 @@
 
-
-
 // server.js
 import express from 'express';
 import path from 'path';
 import { fileURLToPath } from 'url';
 import dotenv from 'dotenv';
-import studentRoutes from './routes/studentRoutes.js';
-import authRoutes from './routes/authRoutes.js';
+import studentRoutes from './routes/student.Routes.js';
+import authRoutes from './routes/auth.Routes.js';
 import connectDB from './config/db.js';
 
 dotenv.config();

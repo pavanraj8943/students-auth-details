@@ -28,9 +28,8 @@ async function login() {
   const data = await res.json();
 
   if (res.ok) {
-    localStorage.setItem("token", data.token); // store JWT
-    alert("Login Success!");
-    window.location.href = "/index.html"; // redirect to student page
+    localStorage.setItem("token", data.token); 
+    window.location.href = "/index.html"; 
   } else {
     alert(data.message);
   }
