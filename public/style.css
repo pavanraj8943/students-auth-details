@@ -78,6 +78,32 @@ h2 {
   margin-bottom: 18px;
 }
 
+.user-panel {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.user-meta {
+  text-align: right;
+}
+
+.user-name {
+  margin: 0;
+  font-weight: 700;
+  color: #0f172a;
+}
+
+.user-avatar {
+  width: 52px;
+  height: 52px;
+  border-radius: 50%;
+  border: 3px solid #0f766e;
+  object-fit: cover;
+  background: #e0f2f1;
+  box-shadow: 0 8px 18px rgba(15, 63, 118, 0.18);
+}
+
 .pill {
   display: inline-flex;
   align-items: center;

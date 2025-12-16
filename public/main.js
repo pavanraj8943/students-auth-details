@@ -7,6 +7,9 @@ const studentsList = document.getElementById('students-list');
 const formTitle = document.getElementById('form-title');
 const saveBtn = document.getElementById('save-btn');
 const cancelBtn = document.getElementById('cancel-btn');
+const avatarImg = document.getElementById('user-avatar');
+const userNameEl = document.getElementById('user-name');
+const DEFAULT_AVATAR = `data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="64" height="64"><rect width="64" height="64" fill="%23e0f2f1"/><text x="50%" y="55%" dominant-baseline="middle" text-anchor="middle" font-size="28" fill="%230f766e" font-family="Arial"></text></svg>`;
 
 // Inputs
 const idInput = document.getElementById('student-id');
@@ -21,7 +24,7 @@ const s3Input = document.getElementById('subject3');
 const marksAccordion = document.getElementById('marks-accordion');
 const marksContent = document.getElementById('marks-content');
 const logoutBtn = document.getElementById('logout-btn');
-
+getFirstLetter
 // Check login
 const token = localStorage.getItem("token");
 if (!token) {
@@ -29,8 +32,13 @@ if (!token) {
   window.location.href = '/login.html';
 }
 
+hydrateUserProfile();
+
 if (logoutBtn) {
   logoutBtn.addEventListener('click', () => {
+    localStorage.removeItem('token');
+    localStorage.removeItem('userImage');
+    localStorage.removeItem('userName');
     window.location.href = '/login.html';
   });
 }
@@ -49,6 +57,11 @@ async function fetchStudents() {
 
   const students = await res.json();
   renderStudents(students);
+}
+
+function getFirstLetter(nameInput) {
+  if (!nameInput || typeof nameInput !== "string") return "";
+  return nameInput.charAt(0);
 }
 
 // Render table
@@ -214,3 +227,17 @@ marksAccordion.addEventListener('click', () => {
 
 // Initial load
 fetchStudents();
+
+function hydrateUserProfile() {
+  const name = localStorage.getItem('userName') || 'User';
+  const image = localStorage.getItem('userImage') || DEFAULT_AVATAR;
+
+  if (userNameEl) {
+    userNameEl.textContent = name;
+  }
+
+  if (avatarImg) {
+    avatarImg.src = image || DEFAULT_AVATAR;
+    avatarImg.alt = `${name} profile image`;
+  }
+}
