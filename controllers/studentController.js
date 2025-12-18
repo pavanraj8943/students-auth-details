@@ -13,7 +13,6 @@ export const getAllStudents = async (req, res) => {
     res.status(500).json({ message: 'Server error' });
   }
 };
-// GET /api/students/:id
 export const getStudentById = async (req, res) => {
   try {
     const student = await Student.findById(req.params.id);
@@ -24,7 +23,7 @@ export const getStudentById = async (req, res) => {
   }
 };
 
-// POST /api/students
+
 export const createStudent = async (req, res) => {
   try {
     const student = new Student(req.body);
